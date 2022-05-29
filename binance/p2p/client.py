@@ -21,7 +21,7 @@ class Client(base_client.Client):
         url = 'v2/friendly/c2c/adv/search'
 
         result = []
-        for page in range(0, max(1, limit // 20 + 1)):
+        for page in range(0, max(1, limit // 20)):
             body = {
                 'asset': asset,
                 'fiat': fiat,

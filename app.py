@@ -41,10 +41,12 @@ async def cost(message: types.Message):
 Цена покупки USDT за фиат %s с %s: %s
 Цена продажи USDT за %s на %s: %s
 Итоговая стоимость %s %s - %s %s
+Итоговый курс 1 %s - %s %s
 ''' % (
     args.base_currency, args.base_bank, result.mean_buy_price,
     args.goal_currency, args.goal_bank, result.mean_sell_price,
-    args.goal_amount, args.goal_currency, result.total_price, args.base_currency))
+    args.goal_amount, args.goal_currency, result.total_price, args.base_currency,
+    args.goal_currency, result.total_rate, args.base_currency))
 
 
 

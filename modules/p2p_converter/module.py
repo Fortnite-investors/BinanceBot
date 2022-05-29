@@ -89,8 +89,11 @@ async def calc_convert_price(
 
     logger.info(f'best sell rate for {base_currency} is {best_buy_rate}')
 
+    total_price = math.ceil(best_buy_rate * usdt_amount)
+
     return models.ConvertResult(
         best_buy_rate, #statistics.mean([offer.offer.price for offer in filtered_buy_offers]),
         best_sell_rate, #statistics.mean([offer.offer.price for offer in filtered_sell_offers]),
-        math.ceil(best_buy_rate * usdt_amount)
+        total_price,
+        total_price / goal_amount,
     )
