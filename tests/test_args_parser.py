@@ -17,3 +17,8 @@ def test_cost_parser(args, is_ok):
         with pytest.raises(command_args.ParseError):
             res = command_args.CostArgs(args)
 
+@pytest.mark.parametrize('args, out', [
+    (' 699 TRY            ZIRAAT RUB TINKOFF', ['699', 'TRY', 'ZIRAAT', 'RUB', 'TINKOFF'])
+])
+def test_simple_parser(args, out):
+    assert command_args.parse_line(args) == out

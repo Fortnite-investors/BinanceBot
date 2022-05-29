@@ -1,9 +1,13 @@
 import decimal
+from typing import List
 
 
 class ParseError(Exception):
     pass
 
+
+def parse_line(line: str) -> List[str]:
+    return " ".join(line.split()).split()
 
 def parse_decimal(value: str, arg_name: str) -> decimal.Decimal:
     try:
@@ -19,7 +23,8 @@ class CostArgs:
     base_currency: str
     base_bank: str
 
-    def __init__(self, args):
+    def __init__(self, args_raw):
+        args = parse_line(args_raw)
         if len(args) < 5:
             raise ParseError(f'Не верное число аргументов')
         self.goal_amount = parse_decimal(args[0], 'goal_amount')
