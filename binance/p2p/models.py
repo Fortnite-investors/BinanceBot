@@ -6,6 +6,13 @@ class TradeMethod(NamedTuple):
     payType: str
     identifier: str
 
+    @staticmethod
+    def from_dict(d: dict):
+        return TradeMethod(
+            payType=d['payType'],
+            identifier=d['identifier'],
+        )
+
 class Offer(NamedTuple):
     tradeType: str
     asset: str
@@ -26,7 +33,7 @@ class Offer(NamedTuple):
             initAmount=decimal.Decimal(d['initAmount']),
             maxSingleTransAmount=decimal.Decimal(d['maxSingleTransAmount']),
             minSingleTransAmount=decimal.Decimal(d['minSingleTransAmount']),
-            tradeMethods=[TradeMethod(**i) for i in d['tradeMethods']]
+            tradeMethods=[TradeMethod.from_dict(i) for i in d['tradeMethods']]
         )
 
 class Data(NamedTuple):
@@ -35,5 +42,5 @@ class Data(NamedTuple):
     @staticmethod
     def from_dict(d: dict):
         return Data(
-            offer=Offer(d['adv'])
+            offer=Offer.from_dict(d['adv'])
         )

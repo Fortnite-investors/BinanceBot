@@ -11,7 +11,7 @@ dp = Dispatcher(bot)
 async def start(message: types.Message):
     """Handle start command"""
     await message.reply("""
-/chat_id - вывести id чата
+/cost GOAL_AMOUNT GOAL_CURRENCY GOAL_BANK BASE_CURRENCY BASE_BANK - выводит стоимость конвертации рублей в определнную валюту через USDT p2p
 /help - помощь по командам
     """)
 
@@ -19,6 +19,13 @@ async def start(message: types.Message):
 @dp.message_handler(commands=['chat_id'])
 async def chat_id(message: types.Message):
     await message.reply(message.chat.id)
+
+
+@dp.message_handler(commands=['/cost'])
+async def cost(message: types.Message):
+    arguments = message.get_args()
+    await message.reply(arguments)
+
 
 async def on_startup(app):
     """Simple hook for aiohttp application which manages webhook"""

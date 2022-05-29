@@ -26,5 +26,6 @@ def load_json():
         if filename in os.listdir('tests/static'):
             with open('tests/static/' + filename, 'r') as f:
                 return json.loads(f.read())
+        raise ValueError('File not found')
 
     return open_and_load

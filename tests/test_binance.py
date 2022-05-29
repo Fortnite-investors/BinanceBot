@@ -4,7 +4,7 @@ import pytest
 
 
 @pytest.mark.parametrize('response, size', [
-    ('search_response.json', 20),
+    ('search_response.json', 10),
     ('search_empty_response.json', 0)
 ])
 async def test_p2p_list(mock_binance, load_json, response, size):

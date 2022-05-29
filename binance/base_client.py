@@ -17,6 +17,9 @@ handler = logging.StreamHandler(stream=sys.stdout)
 logger.addHandler(handler)
 
 
+class RequestError(Exception):
+    pass
+
 class Client:
     def __init__(self, api_key: str = '', secret_key: str = ''):
         self._api_key = api_key
@@ -57,9 +60,11 @@ class Client:
                 exec_method = session.get
             async with exec_method(full_request, headers=headers, json=body) as resp:
                 logger.info(f'got response with status code = {resp.status}')
-                body = await resp.text()
                 if resp.status == 200:
                     body = await resp.text()
                     parsed_body = json.loads(body)
                     return parsed_body
-        return None
+                else:
+                    body = await resp.text()
+                    logger.error(body)
+                    raise RequestError()

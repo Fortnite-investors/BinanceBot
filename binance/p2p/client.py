@@ -1,3 +1,5 @@
+import asyncio
+
 from .. import base_client
 from . import models
 
@@ -34,6 +36,7 @@ class Client(base_client.Client):
             )
             if response:
                 for elem in response['data']:
-                    result.append(models.Data(elem))
-        
+                    result.append(models.Data.from_dict(elem))
+            await asyncio.sleep(0.5)
+
         return result
