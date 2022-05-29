@@ -74,7 +74,7 @@ async def calc_convert_price(
     try:
         buy_offers = await binance_client.p2p.search(
             asset='USDT', fiat=base_currency, tradetype='BUY', paytypes=[base_bank],
-            limit=100,
+            limit=200,
         )
     except Exception as e:
         logger.error('binance error ' + str(e))
