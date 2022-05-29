@@ -50,8 +50,8 @@ async def calc_convert_price(
     logger.info(f'requesting offers to sell for {goal_currency} and bank {goal_bank}')
     try:
         sell_offers = await binance_client.p2p.search(
-            asset='USDT', fiat=goal_currency, tradetype='SELL', paytypes=[goal_bank], 
-            limit=20,
+            asset='USDT', fiat=goal_currency, tradetype='SELL', paytypes=[goal_bank],
+            transAmount=str(goal_amount), limit=100,
         )
     except Exception as e:
         logger.error('binance error ' + str(e))
@@ -74,7 +74,7 @@ async def calc_convert_price(
     try:
         buy_offers = await binance_client.p2p.search(
             asset='USDT', fiat=base_currency, tradetype='BUY', paytypes=[base_bank],
-            limit=20,
+            limit=100,
         )
     except Exception as e:
         logger.error('binance error ' + str(e))

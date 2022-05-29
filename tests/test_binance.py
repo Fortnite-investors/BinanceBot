@@ -17,7 +17,7 @@ async def test_p2p_list(mock_binance, load_json, response, size):
             'page': 1, 
             'payTypes': [], 
             'publisherType': None, 
-            'rows': 10, 
+            'rows': 20, 
             'tradeType': 'BUY'
         }
         return load_json(response)
