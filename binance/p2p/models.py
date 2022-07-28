@@ -30,7 +30,7 @@ class Offer(NamedTuple):
             asset=d['asset'],
             fiatUnit=d['fiatUnit'],
             price=decimal.Decimal(d['price']),
-            initAmount=decimal.Decimal(d['initAmount']),
+            initAmount=decimal.Decimal(0),
             maxSingleTransAmount=decimal.Decimal(d['maxSingleTransAmount']),
             minSingleTransAmount=decimal.Decimal(d['minSingleTransAmount']),
             tradeMethods=[TradeMethod.from_dict(i) for i in d['tradeMethods']]
