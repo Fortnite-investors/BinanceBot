@@ -63,6 +63,7 @@ class Client:
                 if resp.status == 200:
                     body = await resp.text()
                     parsed_body = json.loads(body)
+                    logger.info(parsed_body)
                     return parsed_body
                 else:
                     body = await resp.text()
